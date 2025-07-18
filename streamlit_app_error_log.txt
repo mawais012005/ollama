@@ -1,0 +1,39 @@
+
+Title: Streamlit App Deployment Error – ModuleNotFoundError
+
+Date: 2025-07-18
+
+Environment:
+- Deployment Platform: Streamlit Cloud
+- File causing issue: /mount/src/ollama/app.py
+- Line: 2
+
+Error Traceback:
+--------------------------------------------------------------------
+ModuleNotFoundError: This app has encountered an error.
+The original error message is redacted to prevent data leaks.
+Full error details have been recorded in the logs.
+--------------------------------------------------------------------
+Traceback:
+File "/mount/src/ollama/app.py", line 2, in <module>
+    import openai
+--------------------------------------------------------------------
+
+Root Cause:
+- The module `openai` is not installed in the environment.
+
+Recommended Fix:
+1. Make sure you have a `requirements.txt` file with this line:
+   openai
+
+2. Re-deploy your app to Streamlit Cloud.
+   - Streamlit will auto-install packages listed in `requirements.txt`.
+
+3. If using `pyproject.toml`, make sure `openai` is added as a dependency.
+
+Additional Notes:
+- Ensure your `requirements.txt` also includes other dependencies like `streamlit`, `langchain`, or others if used.
+- You can test locally using:  
+   pip install -r requirements.txt
+
+Status: ❌ App crashed due to missing dependency
